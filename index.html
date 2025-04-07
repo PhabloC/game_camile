@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Jogo para a Namorada</title>
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #f0f0f0; /* Fundo leve */
+        font-family: Arial, sans-serif;
+      }
+      #bloco {
+        width: 200px; /* Aumentei a largura para caber o texto */
+        height: 100px;
+        background-color: #ff4444; /* Vermelho chamativo */
+        border-radius: 10px;
+        position: absolute;
+        cursor: pointer;
+        transition: all 0.2s ease; /* Animação suave ao mudar de posição */
+        display: flex; /* Para centralizar o texto */
+        align-items: center;
+        justify-content: center;
+        color: white; /* Texto branco para contraste */
+        font-size: 20px; /* Tamanho da fonte */
+        text-align: center;
+      }
+      #botao-final {
+        position: fixed;
+        bottom: 20px;
+        padding: 15px 30px;
+        font-size: 18px;
+        background-color: #44ff44; /* Verde para destacar */
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      #botao-final:hover {
+        background-color: #33cc33; /* Efeito ao passar o mouse */
+      }
+    </style>
+  </head>
+  <body>
+    <div id="bloco">Clique aqui se você me ama</div>
+    <button id="botao-final" onclick="mostrarMensagem()">
+      Eu desisto do nosso amor!
+    </button>
+
+    <script>
+      const bloco = document.getElementById("bloco");
+      const botaoFinal = document.getElementById("botao-final");
+
+      // Função para mover o bloco para uma posição aleatória
+      function moverBloco() {
+        const larguraTela = window.innerWidth - 200; // Ajustado para a nova largura
+        const alturaTela = window.innerHeight - 100;
+        const x = Math.floor(Math.random() * larguraTela);
+        const y = Math.floor(Math.random() * alturaTela);
+        bloco.style.left = x + "px";
+        bloco.style.top = y + "px";
+      }
+
+      // Move o bloco quando o mouse passa por cima
+      bloco.addEventListener("mouseover", moverBloco);
+
+      // Inicializa o bloco em uma posição aleatória
+      moverBloco();
+
+      // Função para mostrar a mensagem final
+      function mostrarMensagem() {
+        bloco.style.display = "none"; // Esconde o bloco
+        botaoFinal.style.display = "none"; // Esconde o botão
+        document.body.innerHTML = "<h1>Você perdeu, mas eu te amo!</h1>"; // Mensagem final
+        document.body.style.display = "flex";
+        document.body.style.alignItems = "center";
+        document.body.style.justifyContent = "center";
+        document.body.style.backgroundColor = "#ffcccc"; // Fundo romântico
+      }
+    </script>
+  </body>
+</html>
